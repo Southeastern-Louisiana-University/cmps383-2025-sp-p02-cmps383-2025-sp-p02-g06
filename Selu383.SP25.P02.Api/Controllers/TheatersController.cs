@@ -31,7 +31,7 @@ namespace Selu383.SP25.P02.Api.Controllers
         {
             var result = GetTheaterDtos(theaters.Where(x => x.Id == id)).FirstOrDefault();
             if (result == null)
-            { 
+            {  
                 return NotFound();
             }
             return Ok(result);
