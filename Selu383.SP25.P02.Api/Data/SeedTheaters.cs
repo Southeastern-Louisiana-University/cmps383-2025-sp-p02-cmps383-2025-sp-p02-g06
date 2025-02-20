@@ -19,7 +19,7 @@ namespace Selu383.SP25.P02.Api.Data
                             SeatCount = 150
                         },
                         new Theater
-                        {
+                        { 
                             Name = "Regal Cinema",
                             Address = "456 Elm St, Shelbyville",
                             SeatCount = 200
