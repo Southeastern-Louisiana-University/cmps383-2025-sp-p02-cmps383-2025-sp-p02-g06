@@ -98,7 +98,7 @@ namespace Selu383.SP25.P02.Api.Controllers
                 .Select(x => x.Value)
                 .ToList();
 
-            var userDto = new UserDto
+            var userDto = new UserDto 
             {
                 Id = userId,
                 UserName = username,
