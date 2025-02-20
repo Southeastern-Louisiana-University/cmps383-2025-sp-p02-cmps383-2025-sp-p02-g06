@@ -27,7 +27,7 @@ namespace Selu383.SP25.P02.Api
 
             var app = builder.Build();
 
-            // Migrate + seed
+            // Migrate + seed 
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<DataContext>();

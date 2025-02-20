@@ -10,5 +10,5 @@ namespace Selu383.SP25.P02.Api.Data
         }
 
         public DbSet<Theater> Theaters { get; set; }
-    }
+    } 
 }
