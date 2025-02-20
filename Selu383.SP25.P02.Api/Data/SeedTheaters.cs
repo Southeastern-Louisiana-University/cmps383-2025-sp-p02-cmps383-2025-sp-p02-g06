@@ -26,7 +26,7 @@ namespace Selu383.SP25.P02.Api.Data
                         },
                         new Theater
                         {
-                            Name = "Grand Theater",
+                            Name = "Grand Theater", 
                             Address = "789 Broadway Ave, Metropolis",
                             SeatCount = 300
                         },
