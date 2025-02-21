@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Selu383.SP25.P02.Api.Data;
 using Selu383.SP25.P02.Api.Features.Users;
@@ -43,6 +43,10 @@ namespace Selu383.SP25.P02.Api
 
             builder.Services.AddControllers();
 
+            // ✅ Add Swagger Services
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
             var app = builder.Build();
 
             // ? ENSURE DATABASE IS MIGRATED & SEEDED AT STARTUP
@@ -52,8 +56,6 @@ namespace Selu383.SP25.P02.Api
                 var db = services.GetRequiredService<DataContext>();
 
                 await db.Database.MigrateAsync();  // ? Ensure DB is up to date
-
-
                 await SeedUsersAndRoles.EnsureSeededAsync(services);  // ? Ensure Users & Roles Are Seeded
                 SeedTheaters.Initialize(scope.ServiceProvider); // ? Ensure Theaters Are Seeded
             }
@@ -61,8 +63,15 @@ namespace Selu383.SP25.P02.Api
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.MapControllers();
 
+            // ✅ Enable Swagger UI in Development Mode
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.MapControllers();
             app.Run();
         }
     }
