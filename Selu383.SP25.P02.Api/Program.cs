@@ -61,8 +61,6 @@ namespace Selu383.SP25.P02.Api
             }
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseAuthorization();
 
             // ✅ Enable Swagger UI in Development Mode
             if (app.Environment.IsDevelopment())
@@ -71,7 +69,28 @@ namespace Selu383.SP25.P02.Api
                 app.UseSwaggerUI();
             }
 
-            app.MapControllers();
+
+
+
+            app.UseRouting()
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(x =>
+                {
+                    x.MapControllers();
+                });
+            app.UseStaticFiles();
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSpa(x =>
+                {
+                    x.UseProxyToSpaDevelopmentServer("http://localhost:5173");
+                });
+            }
+            else
+            {
+                app.MapFallbackToFile("/index.html");
+            }
             app.Run();
         }
     }
