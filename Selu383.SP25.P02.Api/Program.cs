@@ -61,8 +61,6 @@ namespace Selu383.SP25.P02.Api
             }
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseAuthorization();
 
             // ✅ Enable Swagger UI in Development Mode
             if (app.Environment.IsDevelopment())
@@ -75,6 +73,8 @@ namespace Selu383.SP25.P02.Api
 
 
             app.UseRouting()
+                .UseAuthentication()
+                .UseAuthorization()
                 .UseEndpoints(x =>
                 {
                     x.MapControllers();
